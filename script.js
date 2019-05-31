@@ -18,6 +18,14 @@ let clickerData = {
     playerPoliceScanners: 0
 }
 
+let torBtn = document.getElementById('torBrowswer');
+let adBtn = document.getElementById("adBlock");
+let virusBtn = document.getElementById('antiVirus');
+let hackBtn = document.getElementById('counterHack');
+let sensorBtn = document.getElementById('motionSensor');
+let alarmBtn = document.getElementById('alarmSystem');
+let scannerBtn = document.getElementById('policeScanner');
+
 const currencyLoop = () => {
     let profit = 0;
     profit += (clickerData.playerTorBrowsers * 0.1);
