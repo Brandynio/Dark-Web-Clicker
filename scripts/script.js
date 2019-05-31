@@ -25,6 +25,7 @@ let hackBtn = document.getElementById('counterHack');
 let sensorBtn = document.getElementById('motionSensor');
 let alarmBtn = document.getElementById('alarmSystem');
 let scannerBtn = document.getElementById('policeScanner');
+let balance = document.getElementById('balance');
 
 const currencyLoop = () => {
     let profit = 0;
@@ -37,6 +38,15 @@ const currencyLoop = () => {
     profit += (clickerData.playerPoliceScanners * 7800);
     clickerData.playerBalance += profit;
     console.log(clickerData.playerBalance);
+    balance.innerHTML = "Bitcoin: " + clickerData.playerBalance;
 }
+
+const addClickWorthToBalance = () => {
+    clickerData.playerBalance += clickerData.playerClickWorth;
+    balance.innerHTML = "Bitcoin: " + clickerData.playerBalance;    
+};
+
+document.getElementById("clickBtn").addEventListener('click', addClickWorthToBalance);
+
 
 let currencyInterval = setInterval(currencyLoop, 1000);
