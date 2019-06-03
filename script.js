@@ -10,3 +10,4 @@ let clickerData = {
     alarmSystemPrice = 1400000,
     policeScanner = 20000000
 }
+
