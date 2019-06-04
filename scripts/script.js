@@ -18,14 +18,26 @@ let clickerData = {
     playerPoliceScanners: 0
 }
 
-let torBtn = document.getElementById('torBrowswer');
-let adBtn = document.getElementById("adBlock");
-let virusBtn = document.getElementById('antiVirus');
-let hackBtn = document.getElementById('counterHack');
-let sensorBtn = document.getElementById('motionSensor');
-let alarmBtn = document.getElementById('alarmSystem');
-let scannerBtn = document.getElementById('policeScanner');
+let buy0 = document.getElementById('TorBrowswers');
+let buy1 = document.getElementById("AdBlockers");
+let buy2 = document.getElementById('AntiViruses');
+let buy3 = document.getElementById('CounterHacks');
+let buy4 = document.getElementById('MotionSensors');
+let buy5 = document.getElementById('AlarmSystems');
+let buy6 = document.getElementById('PoliceScanners');
 let balance = document.getElementById('balance');
+
+const buyBtns = {
+    buy0,
+    buy1,
+    buy2,
+    buy3,
+    buy4,
+    buy5,
+    buy6
+}
+
+const TOTAL_BTNS = 7;
 
 const currencyLoop = () => {
     let profit = 0;
@@ -41,10 +53,30 @@ const currencyLoop = () => {
     balance.innerHTML = "Bitcoin: " + clickerData.playerBalance;
 }
 
+const btnSetup = () => {
+    for (let i = 0; i < TOTAL_BTNS; i++) {
+        let 
+        buyBtns
+    }
+}
+
+const buyClick = item => {
+    // clickerData
+}
+
 const addClickWorthToBalance = () => {
     clickerData.playerBalance += clickerData.playerClickWorth;
     balance.innerHTML = "Bitcoin: " + clickerData.playerBalance;    
 };
+
+window.onbeforeunload = () => {
+    localStorage.setItem('clickerData', JSON.stringify(clickerData));
+}
+
+window.onload = () => {
+    clickerData = JSON.parse(localStorage.getItem('clickerData'));
+    console.log(clickerData);
+}
 
 document.getElementById("clickBtn").addEventListener('click', addClickWorthToBalance);
 
