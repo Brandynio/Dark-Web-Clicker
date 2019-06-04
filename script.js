@@ -16,10 +16,10 @@ window.onbeforeunload = () => {
 }
 
 window.onload = () => {
-    if(typeof(localStorage.getItem("clickerData")) === null){
-        alert('no');
-    }else{
+    if("clickerData" in localStorage){
         clickerData = JSON.parse(localStorage.getItem('clickerData'));
         console.log(clickerData);
+    }else{
+        alert('no');
     }
 }
