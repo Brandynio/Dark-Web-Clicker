@@ -3,52 +3,79 @@
     //if player's balance is greater than or equal to the item's purchase price
         // then highlight it
         // else don't highlight it
-let testItemMenu = [];
-let itemNums = 3;
-let itemNames = ["BitCoin Clicker", "4Chan Crawler", "DeepWeb Lurker",
- "HackerMan Hax", "SilkRoad Bots", "Chinese FireWall DOS"];
+let clickerData = {
+    playerBalance: 100000000,
+    playerClickWorth: 1,
+    playerBitcoinPerSec: 0,
+    menuItemPrices: {
+        torBrowserPrice: 15,
+        adBlockerPrice: 100, 
+        antiVirusPrice: 1100,
+        counterHackPrice: 12000,
+        motionSensorPrice: 130000,
+        alarmSystemPrice: 1400000,
+        policeScannerPrice: 20000000,},
+    playerTorBrowsers: 0,
+    playerAdBlockers: 0,
+    playerAntiViruses: 0,
+    playerCounterHacks: 0,
+    playerMotionSensors: 0,
+    playerAlarmSystems: 0,
+    playerPoliceScanners: 0
+}
+let testItemMenuPrices = [];
+// let itemNames = ["BitCoin Clicker", "4Chan Crawler", "DeepWeb Lurker",
+//  "HackerMan Hax", "SilkRoad Bots", "Chinese FireWall DOS"];
+let itemNames = [];
 let body = document.getElementsByTagName('body')[0];
 let div = document.createElement('div');
 
 let generateRandomNumber = (min, max) => {
-    return Math.floor(Math.random(max) + min);
+    return Math.floor((Math.random() * max) + min);
 };
 
 let generateRandomFloatNumber = (min, max) => {
-    return (Math.random(max) + min).toFixed(2);
+    return ((Math.random() * max) + min).toFixed(2);
 };
 
-let generateRandomName = (names) =>
-{
-    let min = 0;
-    let max = names.length;
-    let randNum = generateRandomNumber(min,max);
-    return names[randNum];
-}
+let populateItemMenu = (menu, balance) => {
+    let balanceDiv = document.createElement('div');
+    balanceDiv.innerHTML = `Player Balance: $ ${balance}`;
+    div.appendChild(balanceDiv);
+    for(let prop in menu)
+    {
+        testItemMenuPrices[prop] = menu[prop];
+        console.log('price: ', testItemMenuPrices[prop]);
+        itemNames[prop] = prop;
+        console.log('prop: ', itemNames[prop]);
 
-let populateItemMenu = (menu, numOfItems) => {
-    for (let index = 0; index < numOfItems; index++) {
-        let min = 10;
-        let max = generateRandomNumber(min, 1000);
-        menu[index] = {
-            name: generateRandomName(itemNames),
-            price: generateRandomFloatNumber(min, max),
-            priceString: `Price: $${this.price}`
-        };
     }
-    let titleDiv = document.createElement('div');
-    titleDiv.id = 'menuTitle';
-    titleDiv.innerHTML = 'Shop Menu';
-    div.appendChild(titleDiv);
 
-    for (let j = 0; j < menu.length; j++) {
-        let item = menu[j];
-        let itemDiv = document.createElement('div');
-        itemDiv.id = `item${j}`;
-        itemDiv.innerHTML = `${item.name}: ${item.priceString}`;
-        itemDiv.appendChild(document.createElement('br'));
-        div.appendChild(itemDiv);
+    for (let stuff in itemNames) {
+       let divChild = document.createElement('div');
+       console.log(`${itemNames[stuff]} $${testItemMenuPrices[stuff]}`);
+       divChild.innerHTML = `${itemNames[stuff]} $ ${testItemMenuPrices[stuff]}`;
+       divChild.style.border = 'solid black 2px';
+       divChild.style.margin = '20px 15px';
+       divChild.style.padding = '5px 10px';
+       let red = generateRandomNumber(200, 55);
+       let green = generateRandomNumber(130,125);
+       let blue = generateRandomNumber(50, 205);
+       let alpha = generateRandomNumber(100, 155);
+
+       divChild.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+       //Deteremines visibility based on player balance
+        if(balance >= testItemMenuPrices[stuff])
+        {
+            divChild.style.visibility = 'visible';
+        }
+        else
+        {
+            divChild.style.visibility = 'hidden';
+        }
+        div.appendChild(divChild);
     }
+
 
     body.appendChild(div);
 };
@@ -67,9 +94,10 @@ let addButtonToBody = () => {
     body.appendChild(buttonElem);
 };
 
+//Button is broke, so ignore it 
 let listenForPurchaseEvt = evt => {
     let testButtonElem = body.lastChild;
-    testButtonElem.addEventListener('click', populateItemMenu(testItemMenu, itemNums));
+    testButtonElem.addEventListener('click', populateItemMenu(clickerData.menuItemPrices, clickerData.playerBalance));
 };
 
 addButtonToBody();
