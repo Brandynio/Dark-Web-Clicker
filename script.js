@@ -16,6 +16,10 @@ window.onbeforeunload = () => {
 }
 
 window.onload = () => {
-    clickerData = JSON.parse(localStorage.getItem('clickerData'));
-    console.log(clickerData);
+    if(typeof(localStorage.getItem("clickerData")) == 'undefined'){
+        alert('no');
+    }else{
+        clickerData = JSON.parse(localStorage.getItem('clickerData'));
+        console.log(clickerData);
+    }
 }
