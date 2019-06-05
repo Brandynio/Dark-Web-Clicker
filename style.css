@@ -69,8 +69,14 @@ h4 {
 }
 
 .text {
-    color: #A80600;
+    color: #BBB;
     text-align: center;
+    margin: 10px;
+    user-select: none;
+}
+
+.text:hover {
+    color: #999;
 }
 
 .textForBalance {
@@ -95,4 +101,22 @@ img {
 .navTitle {
     font-size: 22px;
     color: #FFA4A0;
+}
+
+section {
+    margin-left: 40px;
+}
+
+.link {
+    text-decoration: none;
+    color: #EEE;
+    font-size: 30px;
+}
+
+.link:hover {
+    color: #A80600;
+}
+
+.gameLink {
+    margin: 60px;
 }
