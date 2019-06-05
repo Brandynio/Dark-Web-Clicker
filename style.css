@@ -21,9 +21,10 @@ nav a{
     color: #a0a0a0;
 }
 
-body{
+body {
     margin: 0px !important;
     font-family: 'play';
+    background-color: #111;
 }
 
 #clickBtn {
@@ -41,10 +42,6 @@ header {
 
 .historyBook {
     margin: 15px;
-}
-
-body {
-    background-color: #111;
 }
 
 p {
