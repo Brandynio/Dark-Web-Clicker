@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-a{
+nav a{
     color: #fff;
     text-decoration: none;
     padding: 30px;
@@ -24,4 +24,66 @@ body{
 
 #clickBtn {
     user-select: none;
+}
+
+.webLink {
+    text-decoration: none;
+    color: #A80600;
+}
+
+header {
+    margin: 25px;
+}
+
+.historyBook {
+    margin: 15px;
+}
+
+body {
+    background-color: #111;
+}
+
+p {
+    color: #FF1E00;
+}
+
+h1 {
+    color: #FF1E00;
+    font-size: 38px;
+}
+
+h3 {
+    font-size: 22px;
+    color: #A80600;
+}
+
+h4 {
+    margin: 10px;
+    color: #A80600;
+    font-size: 20px;
+    text-decoration: underline overline;
+}
+
+.text {
+    color: #A80600;
+    text-align: center;
+}
+
+.textForBalance {
+    color: #FF1E00;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+img {
+    max-width: 40%;
+    height: auto;
+    border: inset #A80600 5px;
+}
+
+.imageToClick {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
 }
