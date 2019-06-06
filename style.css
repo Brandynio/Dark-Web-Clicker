@@ -7,21 +7,113 @@
     align-items: center;
 }
 
-a{
+nav a{
     color: #fff;
     text-decoration: none;
     padding: 30px;
 }
 
-a:hover{
+.navItem:hover{
     color: #a0a0a0;
 }
 
-body{
+.webLink:hover {
+    color: #a0a0a0;
+}
+
+body {
     margin: 0px !important;
     font-family: 'play';
+    background-color: #111;
 }
 
 #clickBtn {
     user-select: none;
+}
+
+.webLink {
+    text-decoration: none;
+    color: #A80600;
+}
+
+header {
+    margin: 25px;
+}
+
+.historyBook {
+    margin: 15px;
+}
+
+p {
+    color: #FF1E00;
+}
+
+h1 {
+    color: #FF1E00;
+    font-size: 38px;
+}
+
+h3 {
+    font-size: 22px;
+    color: #A80600;
+}
+
+h4 {
+    margin: 10px;
+    color: #A80600;
+    font-size: 20px;
+    text-decoration: underline overline;
+}
+
+.text {
+    color: #BBB;
+    text-align: center;
+    margin: 10px;
+    user-select: none;
+}
+
+.text:hover {
+    color: #999;
+}
+
+.textForBalance {
+    color: #FF1E00;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+img {
+    max-width: 40%;
+    height: auto;
+    border: inset #A80600 5px;
+}
+
+.imageToClick {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.navTitle {
+    font-size: 22px;
+    color: #FFA4A0;
+}
+
+section {
+    margin-left: 40px;
+}
+
+.link {
+    text-decoration: none;
+    color: #EEE;
+    font-size: 30px;
+}
+
+.link:hover {
+    color: #A80600;
+}
+
+.gameLink {
+    margin: 60px;
 }
