@@ -153,9 +153,9 @@ window.onload = () => {
         clickerData = JSON.parse(localStorage.getItem('clickerData'));
         console.log("clickerData: " + clickerData);
     }
+    btnSetup();
 }
 
-btnSetup();
 document.getElementById("clickBtn").addEventListener('click', addClickWorthToBalance);
 
 
