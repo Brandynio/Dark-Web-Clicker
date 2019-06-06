@@ -79,8 +79,9 @@ h4 {
 .textForBalance {
     color: #FF1E00;
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;
     text-decoration: underline;
+    margin-top: 30px;
 }
 
 img {
@@ -116,4 +117,20 @@ section {
 
 .gameLink {
     margin: 60px;
+}
+
+.clickText {
+    color: #A80600;
+}
+
+.clickText:hover {
+    color: #FFA4A0;
+}
+
+.numOfItem {
+    color: #999;
+}
+
+.price {
+    color: #005C07;
 }
