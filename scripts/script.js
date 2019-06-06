@@ -82,24 +82,24 @@ const btnSetup = () => {
 }
 
 const buyClick = item => {
-    console.log("hewwo??? buyClick???");
-    let clickedPrice = clickerData.clickerItemPrices[item+"Price"];
+    // console.log("hewwo??? buyClick???");
+    let clickedPrice = clickerData.currentPrices["cur" +item+"Price"];
     console.log(clickedPrice);
     let clickedItem = item.charAt(0).toUpperCase() + item.slice(1);
     // console.log(cli)
     if (clickerData.playerBalance >= clickedPrice) {
-        console.log("if statement?? hewwo???");
+        // console.log("if statement?? hewwo???");
         clickerData.playerBalance -= clickedPrice;
         clickerData["player"+item+"s"] += 1;
-        clickerData["cur"+item+"Price"] = (clickedPrice * (1.15 * clickerData["player"+item+"s"]));
-        document.getElementById(item+"Price").innerHTML = clickerData["cur"+item+"Price"];
+        clickerData.currentPrices["cur" +item+"Price"] = parseFloat((clickerData.clickerItemPrices[item+"Price"] * (Math.pow(1.15, clickerData["player"+item+"s"]))).toFixed(2));
+        document.getElementById(item+"Price").innerHTML = clickerData.currentPrices["cur" +item+"Price"];
         document.getElementById("player" + item).innerHTML = clickerData["player" + item + "s"];
     }
 }
 
 const addClickWorthToBalance = () => {
     clickerData.playerBalance += clickerData.playerClickWorth;
-    balance.innerHTML = "Bitcoin: " + clickerData["playerBalance"];   
+    balance.innerHTML = "Bitcoin: " + clickerData["playerBalance"].toFixed(1);   
 };
 
 window.onbeforeunload = () => {
@@ -107,8 +107,42 @@ window.onbeforeunload = () => {
 }
 
 window.onload = () => {
-    clickerData = JSON.parse(localStorage.getItem('clickerData'));
-    console.log(clickerData);
+    if(localStorage.getItem('clickerData') == null){
+        console.log("owo");
+        clickerData = {
+            playerBalance: 0,
+            playerClickWorth: 1,
+            playerBitcoinPerSec: 0,
+            clickerItemPrices: {
+                TorBrowserPrice: 15,
+                AdBlockerPrice: 100, 
+                AntiVirusPrice: 1100,
+                CounterHackPrice: 12000,
+                MotionSensorPrice: 130000,
+                AlarmSystemPrice: 1400000,
+                PoliceScannerPrice: 20000000
+            },
+            currentPrices: {
+                curTorBrowserPrice: 15,
+                curAdBlockerPrice: 100, 
+                curAntiVirusPrice: 1100,
+                curCounterHackPrice: 12000,
+                curMotionSensorPrice: 130000,
+                curAlarmSystemPrice: 1400000,
+                curPoliceScannerPrice: 20000000
+            },
+            playerTorBrowsers: 0,
+            playerAdBlockers: 0,
+            playerAntiViruss: 0,
+            playerCounterHacks: 0,
+            playerMotionSensors: 0,
+            playerAlarmSystems: 0,
+            playerPoliceScanners: 0
+        }
+    }else{
+        clickerData = JSON.parse(localStorage.getItem('clickerData'));
+        console.log("clickerData: " + clickerData);
+    }
 }
 
 btnSetup();
