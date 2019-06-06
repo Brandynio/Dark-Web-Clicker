@@ -3,13 +3,13 @@ let clickerData = {
     playerClickWorth: 1,
     playerBitcoinPerSec: 0,
     clickerItemPrices: {
-        torBrowserPrice: 15,
-        adBlockerPrice: 100, 
-        antiVirusPrice: 1100,
-        counterHackPrice: 12000,
-        motionSensorPrice: 130000,
-        alarmSystemPrice: 1400000,
-        policeScannerPrice: 20000000
+        TorBrowserPrice: 15,
+        AdBlockerPrice: 100, 
+        AntiVirusPrice: 1100,
+        CounterHackPrice: 12000,
+        MotionSensorPrice: 130000,
+        AlarmSystemPrice: 1400000,
+        PoliceScannerPrice: 20000000
     },
     currentPrices: {
         curTorBrowserPrice: 15,
@@ -29,13 +29,13 @@ let clickerData = {
     playerPoliceScanners: 0
 }
 
-let buy0 = document.getElementById('torBrowswer');
-let buy1 = document.getElementById("adBlocker");
-let buy2 = document.getElementById('antiVirus');
-let buy3 = document.getElementById('counterHack');
-let buy4 = document.getElementById('motionSensor');
-let buy5 = document.getElementById('alarmSystem');
-let buy6 = document.getElementById('policeScanner');
+let buy0 = document.getElementById('TorBrowser');
+let buy1 = document.getElementById("AdBlocker");
+let buy2 = document.getElementById('AntiVirus');
+let buy3 = document.getElementById('CounterHack');
+let buy4 = document.getElementById('MotionSensor');
+let buy5 = document.getElementById('AlarmSystem');
+let buy6 = document.getElementById('PoliceScanner');
 let balance = document.getElementById('balance');
 
 const buyBtns = {
@@ -52,38 +52,54 @@ const TOTAL_BTNS = 7;
 
 const currencyLoop = () => {
     let profit = 0;
-    profit += (clickerData.playerTorBrowsers * 0.1);
-    profit += (clickerData.playerAdBlockers * 1);
-    profit += (clickerData.playerAntiViruses * 8);
-    profit += (clickerData.playerCounterHacks * 47);
-    profit += (clickerData.playerMotionSensors * 260);
-    profit += (clickerData.playerAlarmSystems * 1400);
-    profit += (clickerData.playerPoliceScanners * 7800);
+    profit = profit + (clickerData.playerTorBrowsers * 0.1);
+    // console.log(profit);
+    profit = profit + (clickerData.playerAdBlockers * 1);
+    profit = profit + (clickerData.playerAntiViruss * 8);
+    profit = profit + (clickerData.playerCounterHacks * 47);
+    profit = profit + (clickerData.playerMotionSensors * 260);
+    profit = profit + (clickerData.playerAlarmSystems * 1400);
+    profit = profit + (clickerData.playerPoliceScanners * 7800);
+    // console.log(profit);
+    profit = Math.round(profit * 10) / 10;
     clickerData.playerBalance += profit;
-    console.log(clickerData.playerBalance);
-    balance.innerHTML = "Bitcoin: " + clickerData.playerBalance;
+    document.getElementById("perSec").innerHTML = profit.toFixed(1);
+    // console.log(clickerData.playerBalance);
+    balance.innerHTML = "Bitcoin: " + clickerData["playerBalance"].toFixed(1);
 }
 
 const btnSetup = () => {
     for (let i = 0; i < TOTAL_BTNS; i++) {
-        let 
-        buyBtns
+        console.log(buyBtns["buy" + i].id)
+        let thing = buyBtns["buy" + i].id;
+        // let capThing = thing.charAt(0).toUpperCase() + thing.slice(1);
+        document.getElementById("player" + thing).innerHTML = clickerData["player"+thing+"s"];
+        document.getElementById(thing + "Price").innerHTML = clickerData.currentPrices["cur" + thing + "Price"];
+        buyBtns["buy" + i].addEventListener("click", () => {
+            buyClick(thing)
+        });
     }
 }
 
 const buyClick = item => {
+    console.log("hewwo??? buyClick???");
     let clickedPrice = clickerData.clickerItemPrices[item+"Price"];
+    console.log(clickedPrice);
     let clickedItem = item.charAt(0).toUpperCase() + item.slice(1);
-    if (clickerData.balance >= clickedPrice) {
-        clickerData["player"+clickedItem+"s"] += 1;
-        clickerData["cur"+clickedItem+"Price"] = (clickedPrice * (1.15 * clickerData["player"+clickedItem+"s"]));
-        document.getElementById(item+"Price").innerHTML = clickerData["cur"+clickedItem+"Price"];
+    // console.log(cli)
+    if (clickerData.playerBalance >= clickedPrice) {
+        console.log("if statement?? hewwo???");
+        clickerData.playerBalance -= clickedPrice;
+        clickerData["player"+item+"s"] += 1;
+        clickerData["cur"+item+"Price"] = (clickedPrice * (1.15 * clickerData["player"+item+"s"]));
+        document.getElementById(item+"Price").innerHTML = clickerData["cur"+item+"Price"];
+        document.getElementById("player" + item).innerHTML = clickerData["player" + item + "s"];
     }
 }
 
 const addClickWorthToBalance = () => {
     clickerData.playerBalance += clickerData.playerClickWorth;
-    balance.innerHTML = "Bitcoin: " + clickerData.playerBalance;    
+    balance.innerHTML = "Bitcoin: " + clickerData["playerBalance"];   
 };
 
 window.onbeforeunload = () => {
@@ -95,6 +111,7 @@ window.onload = () => {
     console.log(clickerData);
 }
 
+btnSetup();
 document.getElementById("clickBtn").addEventListener('click', addClickWorthToBalance);
 
 
