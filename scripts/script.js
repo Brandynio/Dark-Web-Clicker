@@ -66,6 +66,16 @@ const currencyLoop = () => {
     document.getElementById("perSec").innerHTML = profit.toFixed(1);
     // console.log(clickerData.playerBalance);
     balance.innerHTML = "Bitcoin: " + clickerData["playerBalance"].toFixed(1);
+    for (let i = 0; i < TOTAL_BTNS; i++) {
+        console.log("forloop");
+        if (clickerData.playerBalance < clickerData.currentPrices["cur" + buyBtns["buy"+i].id + "Price"]) {
+            buyBtns["buy"+i].style.display = "none";
+        }
+        else {
+            buyBtns["buy"+i].style.display = "block";
+
+        }
+    }
 }
 
 const btnSetup = () => {
